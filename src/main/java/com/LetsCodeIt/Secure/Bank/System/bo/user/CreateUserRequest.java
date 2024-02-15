@@ -1,10 +1,20 @@
 package com.LetsCodeIt.Secure.Bank.System.bo.user;
 
 public class CreateUserRequest {
+
     private String name;
     private String email;
-    private String phoneNumber;
+    private String phone;
 
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getName() {
         return name;
@@ -22,11 +32,11 @@ public class CreateUserRequest {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

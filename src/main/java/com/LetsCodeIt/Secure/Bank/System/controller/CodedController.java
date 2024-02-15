@@ -1,48 +1,55 @@
 package com.LetsCodeIt.Secure.Bank.System.controller;
 
-import com.LetsCodeIt.Secure.Bank.System.bo.CreateAddContactRequest;
-import com.LetsCodeIt.Secure.Bank.System.bo.CreateFareWellRequest;
-import org.springframework.http.HttpStatus;
+import com.LetsCodeIt.Secure.Bank.System.bo.CreateContactRequest;
+import com.LetsCodeIt.Secure.Bank.System.bo.CreateFarewellRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("API/A-Z/")
+
+@RestController
+@RequestMapping("/api/v1/user")
 public class CodedController {
 
-    List<CreateAddContactRequest> allContact = new ArrayList<>();
-    @GetMapping("/greet")
-    @ResponseBody
-    public String sayHi(@RequestParam String name){
-        return "Hello " + name;
+    List<CreateContactRequest> allContact = new ArrayList<>();
+    @GetMapping("/sayHi")
+    public String sayHi(){
+        return "Welcome to Coded";
     }
 
-@PostMapping("/farewell")
-    public String farewell(@RequestBody CreateFareWellRequest createFareWellRequest){
+    @GetMapping("/greet")
+    public String greet(@RequestParam String name){
+        return "Hello, "+ name;
+    }
 
-    return "GoodeBye" + createFareWellRequest.getName();
-}
+    @PostMapping("/farewell")
+    public String farewell(@RequestBody CreateFarewellRequest createFarewellRequest){
+        return "GoodBye, "+ createFarewellRequest.getName();
+    }
 
-@PostMapping("/addContact")
-public ResponseEntity<String> addContact(@RequestBody CreateAddContactRequest createAddContactRequest){
-        for(int i = 0; i < allContact.size(); i++){
-            if(allContact.get(i).getEmail().equals(createAddContactRequest.getEmail())){
-                return ResponseEntity.badRequest().body("Contact already exists");
+    @PostMapping("/addContact")
+    public ResponseEntity<String> AddContact(@RequestBody  CreateContactRequest createContactRequest){
+        for(int i=0;i<allContact.size();i++){
+            System.out.println(allContact.get(i).getName());
+            if(allContact.get(i).getEmail().equals(createContactRequest.getEmail())){
+                return ResponseEntity.badRequest().body("Contact already exist with this email");
             }
         }
-        allContact.add(createAddContactRequest);
-        return ResponseEntity.ok("Contact added successfully");
+        allContact.add(createContactRequest);
+        return ResponseEntity.ok("Contact added successfully!");
     }
 
     @GetMapping("/getContactDetails")
     public ResponseEntity<?> getContactDetails(@RequestParam String name){
-        for(int i = 0; i<allContact.size(); i++){
-            if(allContact.get(i).getName().equals(name)){
+        for(int i=0; i<allContact.size(); i++){
+            System.out.println(allContact.get(i).toString());
+            if (allContact.get(i).getName().equals(name)){
+
                 return ResponseEntity.ok(allContact.get(i));
             }
         }
-        return ResponseEntity.badRequest().body("Contact not founded");
+        return  ResponseEntity.badRequest().body("Contact not found");
     }
 }

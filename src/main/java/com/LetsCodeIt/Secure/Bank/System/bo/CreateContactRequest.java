@@ -1,28 +1,27 @@
 package com.LetsCodeIt.Secure.Bank.System.bo;
 
-public class CreateAddContactRequest {
+public class CreateContactRequest {
     private String name;
     private String email;
     private String phone;
-
     public String getName() {
         return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
