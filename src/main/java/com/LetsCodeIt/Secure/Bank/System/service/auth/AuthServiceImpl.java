@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public void signup(CreateSignupRequest createSignupRequest) {
-        RoleEntity roleEntity= roleRepository.findRoleEntityByTitle(Roles.user.name())
+        RoleEntity roleEntity= roleRepository.findRoleEntityByTitle(Roles.USER.name())
                 .orElseThrow(() -> new BodyGuardException("no Roles Found"));;
         UserEntity user= new UserEntity();
         user.setName(createSignupRequest.getName());
