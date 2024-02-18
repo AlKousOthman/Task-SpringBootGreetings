@@ -27,6 +27,7 @@ public class SuggestionsServiceImpl implements SuggestionsService{
             guestEntity.setStatus(SuggestionStatus.valueOf(suggestion.getStatus().toUpperCase()));
             guestRepository.save(guestEntity);
         };
+        function.processSuggestion(createSuggestionRequest);
     }
 
     @Override
